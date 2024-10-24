@@ -46,10 +46,6 @@ const TodoPage = () => {
         setTodolist([...todoList])
     }
 
-    // useEffect(() => {
-    //     console.log('useEffect');
-    // },[show, todoList]);
-
     const setItem = () => {
         localStorage.setItem('name', 'Bakyt')
         localStorage.setItem('todo',  JSON.stringify({
@@ -62,12 +58,6 @@ const TodoPage = () => {
     const getItem = (name) => {
         return localStorage.getItem(name)
     }
-
-    // useEffect(() => {
-    //     setItem()
-    //     console.log('setItem');
-    //     console.log(JSON.parse(getItem('todo')));
-    // }, []);
 
     useEffect(() => {
         const myLocalStorage = JSON.parse(localStorage.getItem('todo'))
@@ -85,12 +75,12 @@ const TodoPage = () => {
 
     return (
         <div>
+            <Button title={'Open'} action={handleShow}/>
             <TodoList
                 todoList={todoList}
                 handleDone={handleDone}
                 handleDelete={handleDelete}
                 handleEdit={handleEdit}/>
-            <Button title={'Open'} action={handleShow}/>
             {
                 show  &&
                 <Modal

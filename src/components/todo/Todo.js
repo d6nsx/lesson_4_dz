@@ -3,10 +3,9 @@ import classes from './Todo.module.scss';
 import Button from '../button/Button';
 
 
-const Todo = ({ todo, handleDone, handleDelete, setCurrentId, isEdit,handleEdit }) => {
+const Todo = ({ todo, handleDone, handleDelete, setCurrentId, isEdit, handleEdit }) => {
 
-    const [inputValue, setInputValue] = useState(todo.title)
-    console.log(inputValue);
+    const [ inputValue, setInputValue ] = useState(todo.title);
     return (
         <>
             <li className={`${classes.li} ${todo.completed && classes.done}`}>
@@ -24,14 +23,18 @@ const Todo = ({ todo, handleDone, handleDelete, setCurrentId, isEdit,handleEdit 
                 isEdit && <div className={classes.edit}>
                     <input
                         type="text"
-                        onChange={(e)=>setInputValue(e.target.value)}
+                        onChange={(e) => setInputValue(e.target.value)}
                         value={inputValue}
                     />
-                    <Button title={'save'} action={()=>handleEdit({
-                        ...todo,
-                        title: inputValue
-                    })} />
-                    <Button title={'cancel'} action={()=>{}} color={'error'}/>
+                    <Button title={'save'} action={() => {
+                        handleEdit({
+                            ...todo,
+                            title: inputValue
+                        });
+                        setCurrentId(null);
+                    }
+                    }/>
+                    <Button title={'cancel'} action={() => setCurrentId(null)} color={'error'}/>
                 </div>
             }
 
